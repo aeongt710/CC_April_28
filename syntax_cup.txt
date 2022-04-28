@@ -1,0 +1,10 @@
+precedence left MINUS,
+precedence left PLUS,
+
+nonassoc
+
+
+top has lower and bottom has higher
+
+construction for useful parser
+it generates LALR(1) parser
