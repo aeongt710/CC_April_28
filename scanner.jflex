@@ -1,5 +1,12 @@
 import java_cup.runtime.*;
 
+{%
+public Symbol Funstion1(int a)
+{
+    System.out.printf(" %14s (%-25s) at line %5d  column  %5d\n","Single Commit",yytext(),yyline,yycolumn);
+    return new Symbol(a);
+}
+%}
 %%
 
 %cup
@@ -47,7 +54,7 @@ rsb=(\])
 
 // .		{System.out.println("Error:" + yytext());}
 
-{SingleCommit} {System.out.printf(" %14s (%-25s) at line %5d  column  %5d\n","Single Commit",yytext(),yyline,yycolumn);return new Symbol(sym.SINGLECOMMET);}
+{SingleCommit} {Funstion1(sym.SINGLECOMMET);}
 {MultiCommit} {System.out.printf(" %14s (%-25s) at line %5d  column  %5d\n","Multi Commit",yytext(),yyline,yycolumn);return new Symbol(sym.MULTICOMMIT);}
 {ter} {System.out.printf(" %14s (%-25s) at line %5d  column  %5d\n","TER (",yytext(),yyline,yycolumn);return new Symbol(sym.TERMINATOR);}
 {lp} {System.out.printf(" %14s (%-25s) at line %5d  column  %5d\n","Left (",yytext(),yyline,yycolumn);return new Symbol(sym.LP);}
@@ -64,6 +71,6 @@ rsb=(\])
 {keyword} {System.out.printf(" %14s (%-25s) at line %5d  column  %5d\n","KEYWORD",yytext(),yyline,yycolumn);return new Symbol(sym.KEYWORD);}
 {id}      {System.out.printf(" %14s (%-25s) at line %5d  column  %5d\n","IDENTIFIER",yytext(),yyline,yycolumn);return new Symbol(sym.ID);}
 {string}  {System.out.printf(" %14s (%-25s) at line %5d  column  %5d\n","STRINGS",yytext(),yyline,yycolumn);return new Symbol(sym.STRING);}
-{Character}{System.out.printf(" %14s (%-25s) at line %5d  column  %5d\n","CHARACTER",yytext(),yyline,yycolumn);return new Symbol(sym.CHAR);}
+{Character} { System.out.printf(" %14s (%-25s) at line %5d  column  %5d\n","CHARACTER",yytext(),yyline,yycolumn);return new Symbol(sym.CHAR);}
 \n {}
 . {}
